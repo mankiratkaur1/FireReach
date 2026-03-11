@@ -3,6 +3,9 @@
 ## 1. Project Overview
 FireReach is an autonomous outreach agent running in full production-ready mode. It chains perfectly ordered function calls to capture real-time B2B buyer signals from live search (Tavily/SerpAPI), perform analytical research (Gemini), and execute highly personalized outreach securely via Resend. The critical architecture forces its strict pipeline: Harvester → Analyst → Sender.
 
+### Deployment Status
+The project is **fully functional and runs end-to-end locally**. The frontend has been deployed on **Vercel**. The backend deployment on **Render** was attempted but encountered Python package version errors on Render's free tier. Due to time limitations, only the frontend deployment was completed. The full agent pipeline works as intended when running locally.
+
 ## 2. Architecture Diagram
 
 ```mermaid

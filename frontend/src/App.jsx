@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Play, Loader2, AlertTriangle, CheckCircle2, Shield, 
-  Briefcase, Mail, Building, TrendingUp, Search, 
+import {
+  Play, Loader2, AlertTriangle, CheckCircle2, Shield,
+  Briefcase, Mail, Building, TrendingUp, Search,
   FileText, Send, Link as LinkIcon, Calendar, Activity, XCircle, Copy
 } from 'lucide-react';
 
@@ -10,12 +10,12 @@ function App() {
   const [icp, setIcp] = useState('We sell high-end cybersecurity training to Series B startups.');
   const [company, setCompany] = useState('Acme Corp');
   const [email, setEmail] = useState('founder@acme.example.com');
-  
+
   // Execution State
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
-  
+
   // Diagnostics State
   const [diagnostics, setDiagnostics] = useState({
     gemini_connected: false,
@@ -35,24 +35,24 @@ function App() {
   const handleRun = async (e) => {
     e.preventDefault();
     if (!icp || !company || !email) return;
-    
+
     setLoading(true);
     setError(null);
     setResult(null);
-    
+
     try {
       const response = await fetch('http://localhost:8000/run-agent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ icp, company, recipient_email: email })
       });
-      
+
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.detail || 'Failed to connect to backend execution flow.');
       }
-      
+
       setResult(data);
     } catch (err) {
       setError(err.message);
@@ -99,33 +99,33 @@ function App() {
 
       <div className="app-container">
         <div className="dashboard">
-          
+
           {/* Left Column: CONTROL PANEL */}
           <div className="panel">
             <div className="panel-header">
               <h2 className="panel-title"><Shield className="brand-icon" size={22} /> Strategy Input</h2>
               <p className="panel-subtitle">Define targeting parameters for the autonomous sequence.</p>
             </div>
-            
+
             <form onSubmit={handleRun}>
               <div className="form-group">
                 <label className="form-label">Ideal Customer Profile (ICP)</label>
-                <textarea 
-                  className="form-control" 
-                  value={icp} 
+                <textarea
+                  className="form-control"
+                  value={icp}
                   onChange={(e) => setIcp(e.target.value)}
                   placeholder="e.g. We sell high-end cybersecurity training to Series B startups."
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label className="form-label">Target Company</label>
                 <div className="input-wrapper">
                   <Building size={18} className="input-icon" />
-                  <input 
-                    type="text" 
-                    className="form-control" 
+                  <input
+                    type="text"
+                    className="form-control"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="e.g. Acme Corp"
@@ -133,14 +133,14 @@ function App() {
                   />
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label className="form-label">Recipient Email</label>
                 <div className="input-wrapper">
                   <Mail size={18} className="input-icon" />
-                  <input 
-                    type="email" 
-                    className="form-control" 
+                  <input
+                    type="email"
+                    className="form-control"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="founder@acme.com"
@@ -148,7 +148,7 @@ function App() {
                   />
                 </div>
               </div>
-              
+
               <button type="submit" className="btn-primary" disabled={loading}>
                 {loading ? (
                   <><Loader2 size={20} className="spinner" /> Executing Pipeline...</>
@@ -183,7 +183,7 @@ function App() {
             </div>
 
             <div className="result-cards">
-              
+
               {/* Errors & Banners */}
               {error && (
                 <div className="banner error">
@@ -194,7 +194,7 @@ function App() {
                   </div>
                 </div>
               )}
-              
+
               {result && result.status === 'failure' && (
                 <div className="banner error">
                   <XCircle className="banner-icon" size={24} />
@@ -204,7 +204,7 @@ function App() {
                   </div>
                 </div>
               )}
-              
+
               {result && result.status === 'success' && (
                 <div className="banner success">
                   <CheckCircle2 className="banner-icon" size={24} />
@@ -224,7 +224,7 @@ function App() {
                   </div>
                 </div>
               )}
-              
+
               {/* Default Empty */}
               {!loading && !result && !error && (
                 <div className="card">
@@ -273,10 +273,10 @@ function App() {
                           <span className={`badge badge-${signal.confidence}`}>{signal.confidence}</span>
                         </div>
                         <div className="signal-meta">
-                          <span><TrendingUp size={14}/> {signal.type} ({signal.value})</span>
-                          <span><Calendar size={14}/> {signal.date}</span>
+                          <span><TrendingUp size={14} /> {signal.type} ({signal.value})</span>
+                          <span><Calendar size={14} /> {signal.date}</span>
                           <a href={signal.source_url} target="_blank" rel="noopener noreferrer" className="signal-link">
-                            <LinkIcon size={12}/> {signal.source_name}
+                            <LinkIcon size={12} /> {signal.source_name}
                           </a>
                         </div>
                       </div>
@@ -302,15 +302,15 @@ function App() {
                 <div className="card">
                   <div className="card-header">
                     <div className="card-header-title"><Send size={18} className="brand-icon" /> Tool 3: Automated Sender</div>
-                    <button 
+                    <button
                       onClick={() => copyToClipboard(result.outreach_result.body)}
                       style={{ background: 'none', border: 'none', color: 'var(--accent-primary)', cursor: 'pointer', display: 'flex', gap: '0.35rem', alignItems: 'center' }}
                     >
-                      <Copy size={16} /> <span style={{fontSize: '0.8rem'}}>Copy Copy</span>
+                      <Copy size={16} /> <span style={{ fontSize: '0.8rem' }}>Copy Copy</span>
                     </button>
                   </div>
                   <div className="card-body">
-                    
+
                     <div className="email-container">
                       <div className="email-header">
                         <div className="email-header-row">
@@ -327,7 +327,7 @@ function App() {
                         {result.outreach_result.body}
                       </div>
                     </div>
-                    
+
                     <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Provider Status:</span>
