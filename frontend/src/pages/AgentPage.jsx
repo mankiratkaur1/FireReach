@@ -7,6 +7,7 @@ import {
   Square, Zap, ArrowRight, RefreshCw, Paperclip, X
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { API_ENDPOINTS } from '../config';
 
 const ROLE_COLORS = {
   cto: '#3b82f6',
@@ -52,7 +53,7 @@ export default function AgentPage() {
   const [runError, setRunError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/diagnostics').then(r => r.json()).then(setDiagnostics).catch(() => {});
+    fetch(API_ENDPOINTS.diagnostics).then(r => r.json()).then(setDiagnostics).catch(() => {});
   }, []);
 
   /* ── Phase 1: Discover Contacts ── */
@@ -66,7 +67,7 @@ export default function AgentPage() {
     setResult(null);
     setRunError(null);
     try {
-      const res = await fetch('http://localhost:8000/discover-contacts', {
+      const res = await fetch(API_ENDPOINTS.discoverContacts, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ company, icp })
@@ -92,7 +93,7 @@ export default function AgentPage() {
     setResult(null);
     setRunError(null);
     try {
-      const res = await fetch('http://localhost:8000/run-agent', {
+      const res = await fetch(API_ENDPOINTS.runAgent, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ icp, company, contacts: selectedContacts, attachments, sender_name: senderName, sender_company: senderCompany, sender_designation: senderDesignation })
