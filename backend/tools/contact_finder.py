@@ -3,7 +3,7 @@ import json
 import requests
 from typing import List
 from groq import Groq
-from schemas import Contact
+from backend.schemas import Contact
 
 
 # ── Hunter.io Domain Search ─────────────────────────────────────────────────

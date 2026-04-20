@@ -2,11 +2,11 @@ import os
 from dotenv import load_dotenv
 from typing import List
 
-from schemas import AgentTargetInput, OrchestrationResponse, AnalystInput, SenderInput, OutreachLogEntry
-from tools.harvester import run_signal_harvester
-from tools.analyst import run_research_analyst
-from tools.sender import run_outreach_sender
-from tools.contact_finder import run_contact_discovery
+from backend.schemas import AgentTargetInput, OrchestrationResponse, AnalystInput, SenderInput, OutreachLogEntry
+from backend.tools.harvester import run_signal_harvester
+from backend.tools.analyst import run_research_analyst
+from backend.tools.sender import run_outreach_sender
+from backend.tools.contact_finder import run_contact_discovery
 
 load_dotenv()
 

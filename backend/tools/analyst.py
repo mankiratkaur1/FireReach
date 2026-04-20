@@ -1,4 +1,4 @@
-from schemas import AnalystInput, AnalystResponse
+from backend.schemas import AnalystInput, AnalystResponse
 from groq import Groq
 import os
 import json

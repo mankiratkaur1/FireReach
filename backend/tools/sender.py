@@ -1,4 +1,4 @@
-from schemas import SenderInput, SenderResponse
+from backend.schemas import SenderInput, SenderResponse
 from groq import Groq
 import os
 import json

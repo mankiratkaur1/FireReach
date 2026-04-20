@@ -5,7 +5,7 @@ from typing import Dict, Any, List
 import requests
 import json
 
-from schemas import HarvesterResponse, Signal, SignalType
+from backend.schemas import HarvesterResponse, Signal, SignalType
 
 def parse_signal(title: str, snippet: str, url: str, source: str, date: str) -> Signal | None:
     text = (title + " " + snippet).lower()
