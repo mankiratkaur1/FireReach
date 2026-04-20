@@ -2,9 +2,6 @@
 
 An agentic outreach web application prototype that automatically captures buyer signals using live internet search engines, analyzes accounts via Gemini, and generates hyper-personalized outreach emails sent securely through Resend.
 
-## ⚠️ Deployment Note
-The **complete project runs successfully on localhost** (both frontend and backend). The **frontend has been deployed on Vercel**. However, the **backend could not be deployed on Render** due to Python package version incompatibilities on Render's free tier. Due to time constraints, only the frontend deployment was completed. To experience the full end-to-end pipeline (signal harvesting → research analysis → email delivery), please run the project locally using the instructions below.
-
 ## Getting Started
 
 ### Prerequisites
@@ -30,7 +27,8 @@ cp .env.example .env
 
 3. Start the FastAPI backend on port 8000:
 ```bash
-uvicorn main:app --reload --port 8000
+
+
 ```
 *Observe the console logs: the app will throw a `CRITICAL WARNING` if required keys are missing!*
 

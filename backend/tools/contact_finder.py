@@ -121,7 +121,7 @@ Return up to 5 contacts. Mark each role with "[estimated]" prefix."""
 
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": f"TARGET COMPANY: {company}"}
@@ -189,7 +189,7 @@ If none are relevant, return an empty list."""
     
     try:
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
